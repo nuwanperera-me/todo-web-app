@@ -13,7 +13,7 @@ import { DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui
 
 export default function NavBar() {
 
-  const { data: session } = useSession();
+  const { data: session, } = useSession();
 
   const [providers, setProviders] = useState<any>(null);
 
@@ -24,9 +24,7 @@ export default function NavBar() {
     } 
     setProvidersList();
   }, []);
-  console.log(session?.user?.image);
-  console.log(session?.user?.email);
-  console.log(session?.user?.name);
+  console.log(session);
   return (
     <nav className="fixed w-full h-16 flex flex-col items-center backdrop-blur-sm border-b">
       <div className="w-full h-16 max-w-screen-2xl px-6 flex items-center justify-between">
@@ -53,7 +51,7 @@ export default function NavBar() {
                   <Link className="w-full h-full" href="/profile">Profile</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <button type="button" onClick={(event: React.MouseEvent<HTMLButtonElement>) => signOut()} >Sign out</button>
+                  <button type="button" onClick={(event: React.MouseEvent<HTMLButtonElement>) => signOut()} className="w-full h-full" >Sign out</button>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
