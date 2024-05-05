@@ -28,7 +28,7 @@ export default function NavBar() {
     <nav className="fixed w-full h-16 flex flex-col items-center backdrop-blur-sm border-b">
       <div className="w-full h-16 max-w-screen-2xl px-6 flex items-center justify-between">
         <Link href="/">
-          <div>To-Do</div>
+          <p className="text-2xl font-semibold select-none">TO DOx</p>
         </Link>
         
         <div className="inline-flex gap-4 ">
