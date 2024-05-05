@@ -16,7 +16,6 @@ const handler = NextAuth({
       const sessionUser = await User.findOne({
         email: session.user?.email,
       });
-      session.user = sessionUser._id.toString();
       return session;
     },
     async signIn({ account, profile, user, credentials }) {
@@ -30,7 +29,7 @@ const handler = NextAuth({
         if (!userExists) {
           await User.create({
             email: profile?.email,
-            username: profile?.email?.replace("@gmail.com", "").toLocaleLowerCase(),
+            username: profile?.email?.split("@")[0].toLocaleLowerCase(),
             image: profile?.image,
           });
         }
