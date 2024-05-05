@@ -11,7 +11,6 @@ type todoData = {
   description?: string;
   isImportant: boolean;
   date: string;
-
 };
 
 export default function ToDoCard(data: todoData) {
@@ -28,10 +27,16 @@ export default function ToDoCard(data: todoData) {
             </button>
           </div>
           <div className="text-xs pt-2 font-semibold text-zinc-900 ">
-            {data.isImportant ? <span className=" py-1 px-2 rounded-md text-neutral-50 bg-orange-400">Important</span> : <></>}
+            {data.isImportant ? (
+              <span className=" py-1 px-2 rounded-md text-neutral-50 bg-orange-400">
+                Important
+              </span>
+            ) : (
+              <></>
+            )}
           </div>
           <p className="text-sm text-neutral-500 dark:text-neutral-400 pt-2">
-            {data.description} 
+            {data.description}
           </p>
         </div>
         <div className="w-full flex items-center justify-between gap-2">

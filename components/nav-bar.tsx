@@ -9,11 +9,14 @@ import ThemeToggle from "./theme-toggle";
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
-import { DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import {
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
 export default function NavBar() {
-
-  const { data: session, } = useSession();
+  const { data: session } = useSession();
 
   const [providers, setProviders] = useState<any>(null);
 
@@ -21,7 +24,7 @@ export default function NavBar() {
     const setProvidersList = async () => {
       const response = await getProviders();
       setProviders(response);
-    } 
+    };
     setProvidersList();
   }, []);
   return (
@@ -30,7 +33,7 @@ export default function NavBar() {
         <Link href="/">
           <p className="text-2xl font-semibold select-none">TO DOx</p>
         </Link>
-        
+
         <div className="inline-flex gap-4 ">
           {session?.user ? (
             <DropdownMenu>
@@ -47,18 +50,35 @@ export default function NavBar() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem>
-                  <Link className="w-full h-full" href="/profile">Profile</Link>
+                  <Link className="w-full h-full" href="/profile">
+                    Profile
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <button type="button" onClick={(event: React.MouseEvent<HTMLButtonElement>) => signOut()} className="w-full h-full text-left" >Sign out</button>
+                  <button
+                    type="button"
+                    onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
+                      signOut()
+                    }
+                    className="w-full h-full text-left"
+                  >
+                    Sign out
+                  </button>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
             <>
-              {providers && Object.values(providers).map((provider: any) => (
-                <button type="button" key={provider.name} onClick={() => signIn(provider.id)}>Sign In</button>
-              ))}
+              {providers &&
+                Object.values(providers).map((provider: any) => (
+                  <button
+                    type="button"
+                    key={provider.name}
+                    onClick={() => signIn(provider.id)}
+                  >
+                    Sign In
+                  </button>
+                ))}
             </>
           )}
           <ThemeToggle />
