@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import NavBar from "@/components/nav-bar";
 import Provider from "@/components/provider";
+import Footer from "@/components/footer";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -38,8 +39,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <NavBar />
-          <main className="max-w-screen-xl mx-auto pt-16 font-sans px-4 ">
+          <main className="max-w-screen-xl min-h-screen flex  flex-col justify-between mx-auto pt-16 font-sans px-4 ">
             {children}
+          <Footer />
           </main>
         </ThemeProvider>
       </Provider>
