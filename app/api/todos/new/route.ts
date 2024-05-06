@@ -11,7 +11,6 @@ export const POST = async (req: Request) => {
       description,
       isImportant,
     });
-    console.log(newTodo);
     await newTodo.save();
 
     return new Response(JSON.stringify(newTodo), { status: 201 });
