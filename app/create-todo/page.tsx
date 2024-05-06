@@ -22,7 +22,7 @@ export default function CreateTodo() {
     e.preventDefault();
     setSubmitting(true);
     try {;
-      const response = await fetch("/api/todos", {
+      const response = await fetch("/api/todos/new", {
         method: "POST",
         body: JSON.stringify({
           // @ts-ignore
