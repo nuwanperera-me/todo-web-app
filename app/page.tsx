@@ -47,8 +47,8 @@ export default function Home() {
   const { data: session } = useSession();
 
   return (
-    <>
-      <div className="my-6">Hello {session?.user?.name}</div>
+    <div>
+      <div className="my-6 mt-10 text-3xl font-semibold">Hi {session ? session?.user?.name?.split(" ")[0]  : "there"}! 🤗</div>
       <Link
         href="/create-todo"
         className="fixed w-14 h-14 flex sm:hidden justify-center items-center rounded-full bg-sky-600 bottom-6 right-6"
@@ -77,6 +77,6 @@ export default function Home() {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
