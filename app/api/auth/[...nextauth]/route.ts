@@ -16,9 +16,16 @@ const handler = NextAuth({
       const sessionUser = await User.findOne({
         email: session.user?.email,
       });
+      if (session && sessionUser) {
+        // @ts-ignore
+        session.user.id = sessionUser?._id;
+        // @ts-ignore
+        session.user.username = sessionUser?.username;
+      }
+
       return session;
     },
-    async signIn({ account, profile, user, credentials }) {
+    async signIn({ profile }) {
       try {
         await connectToDatabase();
 
