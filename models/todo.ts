@@ -1,7 +1,7 @@
 import mongoose, { Schema, model, models } from "mongoose";
 
 const TodoSchema = new Schema({
-  creater: {
+  creator: {
     type: Schema.Types.ObjectId,
     ref: "User",
     required: true,
