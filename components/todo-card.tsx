@@ -5,17 +5,19 @@ import {
   CheckCircleIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
+import { cn } from "@/lib/utils";
 
 export type todoData = {
   title: string;
   description?: string;
   isImportant: boolean;
   date: string;
+  isDone: boolean;
 };
 
 export default function ToDoCard(data: todoData) {
   return (
-    <div className="w-full flex flex-col max-w-screen-sm mx-auto p-4 justify-between  bg-white dark:bg-neutral-800 rounded-lg shadow-md">
+    <div className="w-full flex flex-col max-w-screen-sm mx-auto p-4 justify-between  bg-neutral-100 dark:bg-neutral-800 rounded-lg shadow-md">
       <div className="flex flex-col h-full items-center gap-2 justify-between">
         <div className="h-full w-full">
           <div className=" w-full flex justify-between">
@@ -44,8 +46,8 @@ export default function ToDoCard(data: todoData) {
 
           <div className="flex gap-2 items-center">
             <PencilIcon className="h-5 w-5 text-neutral-500 hover:text-neutral-950 dark:hover:text-neutral-50 transition-colors duration-300" />
-            <button className="rounded-full bg-primary-500 text-zinc-950 dark:text-zinc-50 flex items-center justify-center ">
-              <CheckCircleIcon className="h-6 w-6 text-neutral-500 hover:text-neutral-950 dark:hover:text-neutral-50 transition-colors duration-300" />
+            <button  className="rounded-full bg-primary-500 text-zinc-950 dark:text-zinc-50 flex items-center justify-center ">
+              <CheckCircleIcon className={cn(["h-6 w-6 hover:text-neutral-950 dark:hover:text-neutral-50 transition-colors duration-300", !data.isDone ? "text-neutral-500" : "text-green-500 hover:text-green-400 hover:dark:text-green-400"])} />
             </button>
           </div>
         </div>

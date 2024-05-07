@@ -28,7 +28,7 @@ export default function NavBar() {
     setProvidersList();
   }, []);
   return (
-    <nav className="fixed w-full h-16 flex flex-col items-center backdrop-blur-sm border-b shadow-2xl shadow-neutral-800">
+    <nav className="fixed w-full h-16 flex flex-col items-center backdrop-blur-sm border-b shadow-2xl shadow-neutral-200 dark:shadow-neutral-800 ">
       <div className="w-full h-16 max-w-screen-2xl px-6 flex items-center justify-between">
         <Link href="/">
           <p className="text-2xl font-semibold select-none">TO DOx</p>
