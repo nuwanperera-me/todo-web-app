@@ -21,7 +21,7 @@ export default function CreateTodo() {
   const CreateTodo = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setIsSubmitting(true);
-    try {;
+    try {
       const response = await fetch("/api/todos/new", {
         method: "POST",
         body: JSON.stringify({
@@ -30,7 +30,7 @@ export default function CreateTodo() {
           title: post.title,
           description: post.description,
           isImportant: post.isImportant,
-          date: new Date().toLocaleString().slice(0, 10).replace(/\//g, "-")
+          date: new Date().toLocaleString().slice(0, 10).replace(/\//g, "-"),
         }),
       });
       if (response.ok) {
