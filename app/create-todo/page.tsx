@@ -30,6 +30,7 @@ export default function CreateTodo() {
           title: post.title,
           description: post.description,
           isImportant: post.isImportant,
+          date: new Date().toLocaleString().slice(0, 10).replace(/\//g, "-")
         }),
       });
       if (response.ok) {

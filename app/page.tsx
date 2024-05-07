@@ -29,9 +29,10 @@ export default function Home() {
       >
         <PlusCircleIcon className="h-8 w-8 text-neutral-50" />
       </Link>
-      <div className="max-w-screen-lg mx-auto flex items-center justify-center">
+      <div className="max-w-screen-lg mx-auto flex flex-col items-center justify-center">
         <ToDoFeed user={session?.user} expires="" />
       </div>
+
     </div>
   );
 }
