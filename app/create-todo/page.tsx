@@ -11,7 +11,7 @@ import Form from "@/components/form";
 export default function CreateTodo() {
   const router = useRouter();
   const { data: session } = useSession();
-  const [submitting, setSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [post, setPost] = useState({
     title: "",
     description: "",
@@ -20,7 +20,7 @@ export default function CreateTodo() {
 
   const CreateTodo = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    setSubmitting(true);
+    setIsSubmitting(true);
     try {;
       const response = await fetch("/api/todos/new", {
         method: "POST",
@@ -42,7 +42,7 @@ export default function CreateTodo() {
     } catch (error) {
       console.error(error);
     } finally {
-      setSubmitting(false);
+      setIsSubmitting(false);
       router.push("/");
     }
   };
@@ -53,7 +53,7 @@ export default function CreateTodo() {
         type="Create"
         post={post}
         setPost={setPost}
-        submitting={submitting}
+        submitting={isSubmitting}
         handleSubmit={CreateTodo}
       />
     </div>
