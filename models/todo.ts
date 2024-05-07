@@ -9,7 +9,6 @@ const TodoSchema = new Schema({
   title: {
     type: String,
     required: [true, "Please provide a title"],
-
   },
   description: {
     type: String,
