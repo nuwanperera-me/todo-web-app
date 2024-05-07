@@ -41,10 +41,7 @@ export const PATCH = async (
   }
 };
 
-export const DELETE = async (
-  request: Request,
-  { params }: { params: { id: string } }
-) => {
+export const DELETE = async ({ params }: { params: { id: string } }) => {
   try {
     await connectToDatabase();
     const todo = await Todo.findByIdAndDelete(params.id);

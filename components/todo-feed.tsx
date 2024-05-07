@@ -76,29 +76,28 @@ export default function ToDoFeed(session: Session) {
 
   return (
     <>
-    <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-4 ">
-      <Link
-        href="/create-todo"
-        className="max-w-screen-sm w-full hidden sm:block mx-auto rounded-lg"
-      >
-        <div className="w-full h-48 bg-neutral-100 dark:bg-neutral-800 shadow-md p-3 rounded-lg">
-          <div className="w-full h-full border-2 border-dashed rounded-sm border-neutral-400 dark:border-neutral-600  flex items-center justify-center">
-            <div className="flex flex-col items-center justify-center">
-              <PlusCircleIcon className="h-14 w-14 text-neutral-400 dark:text-neutral-600 " />
-              <p className="text-xs font-light text-neutral-400 dark:text-neutral-600 pt-1">
-                Add new To do
-              </p>
+      <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-4 ">
+        <Link
+          href="/create-todo"
+          className="max-w-screen-sm w-full hidden sm:block mx-auto rounded-lg"
+        >
+          <div className="w-full h-48 bg-neutral-100 dark:bg-neutral-800 shadow-md p-3 rounded-lg">
+            <div className="w-full h-full border-2 border-dashed rounded-sm border-neutral-400 dark:border-neutral-600  flex items-center justify-center">
+              <div className="flex flex-col items-center justify-center">
+                <PlusCircleIcon className="h-14 w-14 text-neutral-400 dark:text-neutral-600 " />
+                <p className="text-xs font-light text-neutral-400 dark:text-neutral-600 pt-1">
+                  Add new To do
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </Link>
-      <ToDoCardList data={todos} />
-    </div>
-
+        </Link>
+        <ToDoCardList data={todos} />
+      </div>
       <h2 className="mt-16">Completed Todos</h2>
-    <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 opacity-85">
-      <CompletedToDoCardList data={completedTodos} />
-    </div>
+      <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 opacity-85">
+        <CompletedToDoCardList data={completedTodos} />
+      </div>
     </>
   );
 }

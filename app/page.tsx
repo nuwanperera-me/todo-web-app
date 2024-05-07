@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <div>
       <div className="my-6 mt-10 text-3xl font-semibold">
-        Hi {session ? session?.user?.name?.split(" ")[0] : "there"}! 🤗
+        Hi {session ? session?.user?.name?.split(" ")[0] : "there"}! 👋
       </div>
       <Link
         href="/create-todo"
@@ -32,7 +32,6 @@ export default function Home() {
       <div className="max-w-screen-lg mx-auto flex flex-col items-center justify-center">
         <ToDoFeed user={session?.user} expires="" />
       </div>
-
     </div>
   );
 }

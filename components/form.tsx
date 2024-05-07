@@ -16,7 +16,6 @@ interface FormProps {
 }
 
 export default function Form(FormProps: FormProps) {
-  console.log(FormProps);
 
   return (
     <div className="mx-auto flex flex-col max-w-screen-sm h-auto">

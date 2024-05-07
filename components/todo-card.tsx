@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React from "react";
 
@@ -41,20 +41,16 @@ const handleSubmit = async (
           description: todo.description,
           isImportant: todo.isImportant,
           date: todo.date,
-        
         }),
       });
       await fetch(`/api/todos/${data.id}`, {
         method: "DELETE",
         body: JSON.stringify({}),
       });
-      
     }
   } catch (error) {
     console.error(error);
   }
-
-  console.log("Todo Completed");
 };
 
 const handleDelete = async (
@@ -84,7 +80,10 @@ export default function ToDoCard(data: todoData) {
             <h3 className="text-lg font-semibold dark:text-neutral-100">
               {data.title}
             </h3>
-            <button onClick={(e) => handleDelete(e, data)} className="h-8 rounded-full text-white flex items-center justify-center">
+            <button
+              onClick={(e) => handleDelete(e, data)}
+              className="h-8 rounded-full text-white flex items-center justify-center"
+            >
               <TrashIcon className="h-5 w-5 dark:hover:text-red-500 hover:text-red-600 text-neutral-500 dark:text-neutral-400 transition-colors duration-300" />
             </button>
           </div>
@@ -104,7 +103,12 @@ export default function ToDoCard(data: todoData) {
         <div className="w-full flex items-center justify-between gap-2">
           <p className="text-xs text-neutral-400">{data.date}</p>
 
-          <div className={cn(["flex gap-2 items-center", data.isDone ? "hidden" : ""])}>
+          <div
+            className={cn([
+              "flex gap-2 items-center",
+              data.isDone ? "hidden" : "",
+            ])}
+          >
             <Link href={`/edit-todo/${data.id}`}>
               <PencilIcon className="h-5 w-5 text-neutral-500 hover:text-neutral-950 dark:hover:text-neutral-50 transition-colors duration-300" />
             </Link>
