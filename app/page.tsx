@@ -10,6 +10,14 @@ import ToDoFeed from "@/components/todo-feed";
 export default function Home() {
   const { data: session } = useSession();
 
+  if (!session) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-3xl font-semibold">SIGN IN TO CONTINUE</div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="my-6 mt-10 text-3xl font-semibold">
@@ -22,7 +30,7 @@ export default function Home() {
         <PlusCircleIcon className="h-8 w-8 text-neutral-50" />
       </Link>
       <div className="max-w-screen-lg mx-auto flex items-center justify-center">
-        <ToDoFeed />
+        <ToDoFeed user={session?.user} expires="" />
       </div>
     </div>
   );

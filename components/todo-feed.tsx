@@ -6,6 +6,8 @@ import { PlusCircleIcon } from "@heroicons/react/24/outline";
 
 import ToDoCard from "./todo-card";
 import Link from "next/link";
+import { Session } from "next-auth";
+import { useSession } from "next-auth/react";
 
 interface Todo {
   title: string;
@@ -16,7 +18,46 @@ interface Todo {
 
 const ToDoCardList = ({ data }: { data: Todo[] }) => {
   return (
-      <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-4 ">
+      // <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-4 ">
+      // <Link
+      //   href="/create-todo"
+      //   className="max-w-screen-sm w-full hidden sm:block mx-auto rounded-lg"
+      // >
+      //   <div className="w-full bg-neutral-800 h-48 p-2 rounded-lg">
+      //     <div className="w-full h-full border-2 border-dashed rounded-sm border-neutral-600 flex items-center justify-center">
+      //       <PlusCircleIcon className="h-16 w-16 text-neutral-500 dark:text-neutral-600 " />
+      //     </div>
+      //   </div>
+      // </Link>
+      <>
+      {data.map((todo) => (
+        <ToDoCard
+          title={todo.title}
+          description={todo.description}
+          isImportant={todo.isImportant}
+          date={todo.date.split("T")[0]}
+        />
+      
+      ))}
+      </>
+    // </div>
+  );
+};
+
+export default function ToDoFeed(session: Session) {
+  const [todos, setTodos] = useState<Todo[]>([]);
+  useEffect(() => {
+    const fetchTodos = async () => {
+      
+      //@ts-ignore
+      const res = await fetch(`/api/todos/${session?.user?.id.toString()}`);
+      const data = await res.json();
+      setTodos(data);
+    };
+    fetchTodos();
+  }, [session]);
+  return (
+    <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-4 ">
       <Link
         href="/create-todo"
         className="max-w-screen-sm w-full hidden sm:block mx-auto rounded-lg"
@@ -27,28 +68,7 @@ const ToDoCardList = ({ data }: { data: Todo[] }) => {
           </div>
         </div>
       </Link>
-      {data.map((todo) => (
-        <ToDoCard
-          title={todo.title}
-          description={todo.description}
-          isImportant={todo.isImportant}
-          date={todo.date.split("T")[0]}
-        />
-      ))}
-    </div>
-  );
-};
-
-export default function ToDoFeed() {
-  const [todos, setTodos] = useState<Todo[]>([]);
-
-  useEffect(() => {
-    const fetchTodos = async () => {
-      const res = await fetch("/api/todos");
-      const data = await res.json();
-      setTodos(data);
-    };
-    fetchTodos();
-  }, []);
-  return <ToDoCardList data={todos} />;
+  <ToDoCardList data={todos} />
+  </div>
+);
 }
