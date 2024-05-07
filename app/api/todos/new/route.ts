@@ -6,13 +6,12 @@ export const POST = async (req: Request) => {
   try {
     await connectToDatabase();
     const newTodo = await Todo.create({
-      creater: userId,
+      creator: userId,
       title,
       description,
       isImportant,
     });
     await newTodo.save();
-
     return new Response(JSON.stringify(newTodo), { status: 201 });
   } catch (error) {
     return new Response(JSON.stringify({ error }), { status: 500 });

@@ -6,7 +6,7 @@ import {
   TrashIcon,
 } from "@heroicons/react/24/outline";
 
-type todoData = {
+export type todoData = {
   title: string;
   description?: string;
   isImportant: boolean;
