@@ -23,9 +23,9 @@ const TodoSchema = new Schema({
   },
   isDone: {
     type: Boolean,
-    default: false,
+    default: true,
   },
 });
 
-const Todo = models.Todo || model("Todo", TodoSchema);
-export default Todo;
+const CompletedTodo = models.CompletedTodo || model("CompletedTodo", TodoSchema);
+export default CompletedTodo;
