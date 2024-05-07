@@ -21,6 +21,10 @@ const TodoSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  isDone: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const Todo = models.Todo || model("Todo", TodoSchema);
