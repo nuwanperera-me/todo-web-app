@@ -20,7 +20,6 @@ export const PATCH = async (
   request: Request,
   { params }: { params: { id: string } }
 ) => {
-  console.log(params.id);
   const { title, description, isImportant, isDone } = await request.json();
   try {
     await connectToDatabase();
@@ -41,7 +40,10 @@ export const PATCH = async (
   }
 };
 
-export const DELETE = async ({ params }: { params: { id: string } }) => {
+export const DELETE = async (
+  request: Request,
+  { params }: { params: { id: string } }
+) => {
   try {
     await connectToDatabase();
     const todo = await Todo.findByIdAndDelete(params.id);

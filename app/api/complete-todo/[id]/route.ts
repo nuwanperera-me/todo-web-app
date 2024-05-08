@@ -18,3 +18,17 @@ export const POST = async (req: Request) => {
     return new Response(JSON.stringify({ error }), { status: 500 });
   }
 };
+
+export const DELETE = async (
+  request: Request,
+  { params }: { params: { id: string } }
+) => {
+  try {
+    await connectToDatabase();
+    const todo = await CompletedTodo.findByIdAndDelete(params.id);
+
+    return new Response("Todo Deleted", { status: 200 });
+  } catch (error) {
+    return new Response("Internal sever error", { status: 500 });
+  }
+};
