@@ -47,6 +47,7 @@ const handleSubmit = async (
         method: "DELETE",
         body: JSON.stringify({}),
       });
+      window.location.reload();
     }
   } catch (error) {
     console.error(error);
@@ -60,17 +61,29 @@ const handleDelete = async (
   e.preventDefault();
 
   try {
-    const response = await fetch(`/api/todos/${data.id}`, {
-      method: "GET",
-    });
-    await fetch(`/api/todos/${data.id}`, {
-      method: "DELETE",
-      body: JSON.stringify({}),
-    });
+    let response = null;
+    if (data.isDone) {
+      response = await fetch(`/api/complete-todo/${data.id}`, {
+        method: "DELETE",
+        body: JSON.stringify({ id: data.id }),
+      });
+    } else {
+      response = await fetch(`/api/todos/${data.id}`, {
+        method: "GET",
+      });
+    }
+    if (response.ok) {
+      await fetch(`/api/todos/${data.id}`, {
+        method: "DELETE",
+        body: JSON.stringify({}),
+      });
+    }
+    window.location.reload();
   } catch (error) {
     console.error(error);
   }
 };
+
 export default function ToDoCard(data: todoData) {
   return (
     <div className="w-full flex flex-col max-w-screen-sm mx-auto p-4 justify-between  bg-neutral-100 dark:bg-neutral-800 rounded-lg shadow-md">
