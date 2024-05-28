@@ -1,6 +1,8 @@
 "use client";
 
-import { useSession } from "next-auth/react";
+import React, { useEffect, useState } from "react";
+import { signIn, useSession, getProviders } from "next-auth/react";
+
 import Link from "next/link";
 
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
@@ -10,10 +12,31 @@ import ToDoFeed from "@/components/todo-feed";
 export default function Home() {
   const { data: session } = useSession();
 
+  const [providers, setProviders] = useState<any>(null);
+
+  useEffect(() => {
+    const setProvidersList = async () => {
+      const response = await getProviders();
+      setProviders(response);
+    };
+    setProvidersList();
+  }, []);
+
   if (!session) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <div className="text-3xl font-semibold">SIGN IN TO CONTINUE</div>
+      <div className="flex flex-col items-center justify-center h-screen">
+        <div className="text-3xl font-semibold">Sign In to Continue</div>
+        {providers &&
+          Object.values(providers).map((provider: any) => (
+            <button
+              type="button"
+              key={provider.name}
+              onClick={() => signIn(provider.id)}
+              className="mt-4 px-6 py-2 bg-emerald-600 hover:bg-emerald-500 transition-colors duration-200 text-sm text-zinc-50 font-semibold rounded-lg "
+            >
+              Sign In
+            </button>
+          ))}
       </div>
     );
   }
