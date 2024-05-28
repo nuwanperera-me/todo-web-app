@@ -6,14 +6,11 @@ import {
   PencilIcon,
   CheckCircleIcon,
   TrashIcon,
-  PlusCircleIcon,
 } from "@heroicons/react/24/outline";
 
-// import ToDoCard from "./todo-card";
 import Link from "next/link";
 import { Session } from "next-auth";
 import { cn } from "@/lib/utils";
-import { set } from "mongoose";
 
 interface Todo {
   _id: string;
@@ -23,42 +20,6 @@ interface Todo {
   date: string;
   isDone: boolean;
 }
-
-// const ToDoCardList = ({ data }: { data: Todo[] }) => {
-//   return (
-//     <>
-//       {data.map((todo) => (
-//         <ToDoCard
-//           _id={todo._id}
-//           title={todo.title}
-//           description={todo.description}
-//           isImportant={todo.isImportant}
-//           date={todo.date.split("T")[0]}
-//           isDone={todo.isDone}
-//         />
-//       ))}
-//     </>
-//   );
-// };
-
-// const CompletedToDoCardList = ({ data }: { data: Todo[] }) => {
-//   return (
-//     <>
-//       {data.map((todo) => (
-//         <ToDoCard
-//           _id={todo._id}
-//           title={todo.title}
-//           description={todo.description}
-//           isImportant={todo.isImportant}
-//           date={todo.date.split("T")[0]}
-//           isDone={todo.isDone}
-//         />
-//       ))}
-//     </>
-//   );
-// };
-
-
 
 export default function ToDoFeed(session: Session) {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -149,12 +110,12 @@ export default function ToDoFeed(session: Session) {
 
   return (
     <>
-      <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-4 ">
-        <Link
+      <div className="w-full flex flex-col gap-4 ">
+        {/* <Link
           href="/create-todo"
           className="max-w-screen-sm w-full hidden sm:block mx-auto rounded-lg"
         >
-          <div className="w-full h-48 bg-neutral-100 dark:bg-neutral-800 shadow-md p-3 rounded-lg">
+          <div className="w-full h-32 bg-neutral-200 dark:bg-neutral-800 shadow-md p-3 rounded-lg">
             <div className="w-full h-full border-2 border-dashed rounded-sm border-neutral-400 dark:border-neutral-600  flex items-center justify-center">
               <div className="flex flex-col items-center justify-center">
                 <PlusCircleIcon className="h-14 w-14 text-neutral-400 dark:text-neutral-600 " />
@@ -164,9 +125,9 @@ export default function ToDoFeed(session: Session) {
               </div>
             </div>
           </div>
-        </Link>
+        </Link> */}
         {todos.map((data) => (
-          <div className="w-full flex flex-col max-w-screen-sm mx-auto p-4 justify-between  bg-neutral-100 dark:bg-neutral-800 rounded-lg shadow-md">
+          <div className="w-full flex flex-col max-w-screen-sm mx-auto p-4 justify-between  bg-neutral-200 dark:bg-neutral-800 rounded-lg shadow-md">
             <div className="flex flex-col h-full items-center gap-2 justify-between">
               <div className="h-full w-full">
                 <div className=" w-full flex justify-between">
@@ -218,9 +179,9 @@ export default function ToDoFeed(session: Session) {
                     <CheckCircleIcon
                       className={cn([
                         "h-6 w-6 hover:text-neutral-950 dark:hover:text-neutral-50 transition-colors duration-300",
-                        !data.isDone
+                        data.isDone
                           ? "text-neutral-500"
-                          : "text-green-500 hover:text-green-400 hover:dark:text-green-400",
+                          : "text-neutral-500 hover:text-green-500 hover:dark:text-green-400",
                       ])}
                     />
                   </button>
@@ -230,10 +191,10 @@ export default function ToDoFeed(session: Session) {
           </div>
         ))}
       </div>
-      <h2 className="mt-16">Completed Todos</h2>
-      <div className="w-full grid sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4 opacity-85">
+      <h2 className="mt-16 text-xl font-semibold">Completed Todos</h2>
+      <div className="w-full flex flex-col gap-3 mt-4 opacity-85">
         {completedTodos.map((data) => (
-          <div className="w-full flex flex-col max-w-screen-sm mx-auto p-4 justify-between  bg-neutral-100 dark:bg-neutral-800 rounded-lg shadow-md">
+          <div className="w-full flex flex-col max-w-screen-sm mx-auto p-4 justify-between  bg-neutral-200 dark:bg-neutral-800 rounded-lg shadow-md">
             <div className="flex flex-col h-full items-center gap-2 justify-between">
               <div className="h-full w-full">
                 <div className=" w-full flex justify-between">
@@ -252,7 +213,7 @@ export default function ToDoFeed(session: Session) {
                 </div>
                 <div className="text-xs pt-2 font-semibold text-zinc-900 ">
                   {data.isImportant ? (
-                    <span className=" py-1 px-2 rounded-md text-neutral-50 bg-orange-400">
+                    <span className=" py-1 px-2 rounded-md text-neutral-50 bg-orange-500">
                       Important
                     </span>
                   ) : (
