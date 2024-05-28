@@ -127,7 +127,7 @@ export default function ToDoFeed(session: Session) {
           </div>
         </Link> */}
         {todos.map((data) => (
-          <div className="w-full flex flex-col max-w-screen-sm mx-auto p-4 justify-between  bg-neutral-200 dark:bg-neutral-800 rounded-lg shadow-md">
+          <div key={data._id} className="w-full flex flex-col max-w-screen-sm mx-auto p-4 justify-between  bg-neutral-200 dark:bg-neutral-800 rounded-lg shadow-md">
             <div className="flex flex-col h-full items-center gap-2 justify-between">
               <div className="h-full w-full">
                 <div className=" w-full flex justify-between">
@@ -194,7 +194,7 @@ export default function ToDoFeed(session: Session) {
       <h2 className="mt-16 text-xl font-semibold">Completed Todos</h2>
       <div className="w-full flex flex-col gap-3 mt-4 opacity-85">
         {completedTodos.map((data) => (
-          <div className="w-full flex flex-col max-w-screen-sm mx-auto p-4 justify-between  bg-neutral-200 dark:bg-neutral-800 rounded-lg shadow-md">
+          <div key={data._id} className="w-full flex flex-col max-w-screen-sm mx-auto p-4 justify-between  bg-neutral-200 dark:bg-neutral-800 rounded-lg shadow-md">
             <div className="flex flex-col h-full items-center gap-2 justify-between">
               <div className="h-full w-full">
                 <div className=" w-full flex justify-between">
