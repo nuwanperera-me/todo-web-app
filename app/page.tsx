@@ -5,9 +5,8 @@ import { signIn, useSession, getProviders } from "next-auth/react";
 
 import Link from "next/link";
 
-import { PlusCircleIcon } from "@heroicons/react/24/outline";
-
 import ToDoFeed from "@/components/todo-feed";
+import { PlusIcon } from "@heroicons/react/24/outline";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -42,16 +41,20 @@ export default function Home() {
   }
 
   return (
-    <div>
-      <div className="my-6 mt-10 text-3xl font-semibold">
-        Hi {session ? session?.user?.name?.split(" ")[0] : "there"}! 👋
+    <div className="max-w-screen-md w-full mx-auto">
+      <div className="flex items-end justify-between">
+        {" "}
+        <div className="my-6 mt-10 text-3xl font-semibold">
+          Welcome Back, {session ? session?.user?.name?.split(" ")[0] : "there"}{" "}
+          👋
+        </div>
+        <Link
+          href="/create-todo"
+          className="fixed w-14 sm:w-8 h-14 sm:h-8 flex sm:relative justify-center items-center rounded-full bg-emerald-600 sm:bg-zinc-300  hover:bg-emerald-500 sm:hover:bg-zinc-400 transition-colors duration-200 bottom-6 right-6"
+        >
+          <PlusIcon className="h-8 sm:h-5 w-8 sm:w-5 text-neutral-50 " />
+        </Link>
       </div>
-      <Link
-        href="/create-todo"
-        className="fixed w-14 h-14 flex sm:hidden justify-center items-center rounded-full bg-sky-600 bottom-6 right-6"
-      >
-        <PlusCircleIcon className="h-8 w-8 text-neutral-50" />
-      </Link>
       <div className="max-w-screen-lg mx-auto flex flex-col items-center justify-center">
         <ToDoFeed user={session?.user} expires="" />
       </div>
