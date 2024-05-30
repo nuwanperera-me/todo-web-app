@@ -50,15 +50,15 @@ export default function Home() {
         </div>
         <Link
           href="/create-todo"
-          className="fixed w-14 sm:w-auto h-14 sm:h-auto flex sm:relative justify-center items-center rounded-full sm:rounded-sm bg-blue-600 dark:bg-blue-500 hover:opacity-90 transition-opacity duration-200 bottom-6 right-6"
+          className="fixed w-14 sm:w-auto h-14 sm:h-auto flex sm:relative justify-center items-center rounded-full sm:rounded-sm bg-blue-600 dark:bg-blue-500 hover:opacity-90 transition-opacity duration-200 bottom-6 right-6 z-10"
         >
-          <PlusIcon className="block sm:hidden h-8 sm:h-6 w-8 sm:w-6 text-zinc-100 dark:text-zinc-50 m-2" />
+          <PlusIcon className="block sm:hidden h-8 sm:h-7 w-8 sm:w-7 text-zinc-100 dark:text-zinc-50 m-2" />
 
           <p className="hidden sm:inline-flex items-center py-2 px-4 text-zinc-50 text-sm"> <span>
             <PlusIcon className="w-4 h-4 mr-2"/></span>Add new</p>
         </Link>
       </div>
-      <div className="max-w-screen-lg mx-auto flex flex-col items-center justify-center">
+      <div className="max-w-screen-lg mx-auto flex flex-col items-center justify-center mt-6">
         <ToDoFeed user={session?.user} expires="" />
       </div>
     </div>

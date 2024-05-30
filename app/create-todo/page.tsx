@@ -49,7 +49,8 @@ export default function CreateTodo() {
   };
 
   return (
-    <div className="mt-10">
+    <div className="sticky w-full m-auto">
+      <div className="w-full">
       <Form
         type="Create"
         post={post}
@@ -57,6 +58,7 @@ export default function CreateTodo() {
         submitting={isSubmitting}
         handleSubmit={CreateTodo}
       />
+      </div>
     </div>
   );
 }
