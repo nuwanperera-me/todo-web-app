@@ -110,23 +110,9 @@ export default function ToDoFeed(session: Session) {
 
   return (
     <>
-      <div className="w-full flex flex-col gap-4 ">
-        {/* <Link
-          href="/create-todo"
-          className="max-w-screen-sm w-full hidden sm:block mx-auto rounded-lg"
-        >
-          <div className="w-full h-32 bg-neutral-200 dark:bg-neutral-800 shadow-md p-3 rounded-lg">
-            <div className="w-full h-full border-2 border-dashed rounded-sm border-neutral-400 dark:border-neutral-600  flex items-center justify-center">
-              <div className="flex flex-col items-center justify-center">
-                <PlusCircleIcon className="h-14 w-14 text-neutral-400 dark:text-neutral-600 " />
-                <p className="text-xs font-light text-neutral-400 dark:text-neutral-600 pt-1">
-                  Add new To do
-                </p>
-              </div>
-            </div>
-          </div>
-        </Link> */}
-        {todos.map((data) => (
+      <div className="w-full flex flex-col gap-4 items-center">
+        
+        {todos.length === 0 ? 'No Todos available!' : todos.map((data) => (
           <div key={data._id} className="w-full flex flex-col max-w-screen-sm mx-auto p-4 justify-between  bg-neutral-200 dark:bg-neutral-800 rounded-lg shadow-md">
             <div className="flex flex-col h-full items-center gap-2 justify-between">
               <div className="h-full w-full">
@@ -191,7 +177,7 @@ export default function ToDoFeed(session: Session) {
           </div>
         ))}
       </div>
-      <h2 className="mt-16 text-xl font-semibold">Completed Todos</h2>
+      <h2 className="mt-16 text-xl font-semibold"> {completedTodos.length === 0 ? '': 'Completed Todos'}</h2>
       <div className="w-full flex flex-col gap-3 mt-4 opacity-85">
         {completedTodos.map((data) => (
           <div key={data._id} className="w-full flex flex-col max-w-screen-sm mx-auto p-4 justify-between  bg-neutral-200 dark:bg-neutral-800 rounded-lg shadow-md">
