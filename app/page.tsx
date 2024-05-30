@@ -50,9 +50,12 @@ export default function Home() {
         </div>
         <Link
           href="/create-todo"
-          className="fixed w-14 sm:w-8 h-14 sm:h-8 flex sm:relative justify-center items-center rounded-full bg-emerald-600 sm:bg-zinc-300  hover:bg-emerald-500 sm:hover:bg-zinc-400 transition-colors duration-200 bottom-6 right-6"
+          className="fixed w-14 sm:w-auto h-14 sm:h-auto flex sm:relative justify-center items-center rounded-full sm:rounded-sm bg-blue-600 dark:bg-blue-500 hover:opacity-90 transition-opacity duration-200 bottom-6 right-6"
         >
-          <PlusIcon className="h-8 sm:h-5 w-8 sm:w-5 text-neutral-50 " />
+          <PlusIcon className="block sm:hidden h-8 sm:h-6 w-8 sm:w-6 text-zinc-100 dark:text-zinc-50 m-2" />
+
+          <p className="hidden sm:inline-flex items-center py-2 px-4 text-zinc-50 text-sm"> <span>
+            <PlusIcon className="w-4 h-4 mr-2"/></span>Add new</p>
         </Link>
       </div>
       <div className="max-w-screen-lg mx-auto flex flex-col items-center justify-center">
