@@ -1,22 +1,24 @@
 import mongoose from "mongoose";
 
-let isConnected: boolean = false;
+let mongoClient: mongoose.Mongoose | null = null;
+let maxPoolSize: number = 10;
+
+const options = {
+  maxPoolSize: maxPoolSize,
+};
 
 export const connectToDatabase = async () => {
   mongoose.set("strictQuery", true);
 
-  if (isConnected) {
+  if (mongoClient) {
     console.log("MongoDB is already connected.");
     return;
   }
-
   try {
-    await mongoose.connect(process.env.MONGODB_URI || "", {
-      dbName: "TO-DOX",
-    });
-    isConnected = true;
+    mongoClient = await mongoose.connect(process.env.MONGODB_URI || "", options);
     console.log("MongoDB is connected.");
   } catch (error) {
     console.error("MongoDB connection error:", error);
   }
+  return mongoClient;
 };
