@@ -8,11 +8,11 @@ export default function Profile() {
   const { data: session, status } = useSession();
   if (status === "authenticated" && session?.user) {
     return (
-      <div className="max-w-96 mt-8 mx-auto flex items-center gap-4">
+      <div className="max-w-96 m-auto flex items-center gap-4">
         <Image
           src={session.user.image || ""}
-          width={108}
-          height={108}
+          width={84}
+          height={84}
           alt="Profile"
           className="rounded-full"
         />
