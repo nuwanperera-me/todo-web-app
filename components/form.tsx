@@ -1,9 +1,9 @@
 "user client";
 
-import React, { use, useEffect } from "react";
+import React, { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
-import { ClipboardDocumentCheckIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
+import { ClipboardDocumentCheckIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
 interface FormProps {
@@ -14,6 +14,7 @@ interface FormProps {
       title: string;
       description: string;
       isImportant: boolean;
+      isDone?: boolean;
     }>
   >;
   submitting: boolean;
@@ -114,7 +115,6 @@ export default function Form(FormProps: FormProps) {
         </div>
         <div className="flex w-full pt-4 gap-3">
           <Link href="/" className="w-full flex items-center justify-center font-medium text-zinc-800 dark:text-zinc-200 border hover:bg-zinc-200 dark:hover:bg-zinc-800 underline-offset-2 rounded-md">
-
               Cancel
           </Link>
           <button

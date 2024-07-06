@@ -30,7 +30,7 @@ export default function CreateTodo() {
           title: post.title,
           description: post.description,
           isImportant: post.isImportant,
-          date: new Date().toLocaleString().slice(0, 10).replace(/\//g, "-"),
+          date: Date.now(),
         }),
       });
       if (response.ok) {
@@ -49,7 +49,7 @@ export default function CreateTodo() {
   };
 
   return (
-    <div className="sticky w-full m-auto">
+    <div className="w-full m-auto">
       <div className="w-full">
       <Form
         type="Create"
