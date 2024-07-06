@@ -5,8 +5,9 @@ import { signIn, useSession, getProviders } from "next-auth/react";
 
 import Link from "next/link";
 
-import ToDoFeed from "@/components/todo-feed";
+// import ToDoFeed from "@/components/todo-feed";
 import { PlusIcon } from "@heroicons/react/24/outline";
+import Feed from "@/components/todo/feed";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -41,16 +42,15 @@ export default function Home() {
   }
 
   return (
-    <div className="max-w-screen-md w-full mx-auto">
+    <div className="max-w-screen-sm w-full mx-auto">
       <div className="flex items-end justify-between">
-        {" "}
-        <div className="my-6 mt-10 text-3xl font-semibold">
-          Welcome Back, {session ? session?.user?.name?.split(" ")[0] : "there"}{" "}
+        <div className="my-6 mt-10 text-4xl font-semibold">
+          Hello {session ? session?.user?.name?.split(" ")[0] : "there"}{" "}
           👋
         </div>
         <Link
           href="/create-todo"
-          className="fixed w-14 sm:w-auto h-14 sm:h-auto flex sm:relative justify-center items-center rounded-full sm:rounded-sm bg-blue-600 dark:bg-blue-500 hover:opacity-90 transition-opacity duration-200 bottom-6 right-6 z-10"
+          className="fixed w-14 sm:w-auto h-14 sm:h-auto flex sm:relative justify-center items-center rounded-full sm:rounded-sm bg-blue-600 dark:bg-blue-500 hover:opacity-90 transition-opacity duration-200 bottom-6 right-6 sm:top-1/2 sm:right-0 z-10"
         >
           <PlusIcon className="block sm:hidden h-8 sm:h-7 w-8 sm:w-7 text-zinc-100 dark:text-zinc-50 m-2" />
 
@@ -58,8 +58,8 @@ export default function Home() {
             <PlusIcon className="w-4 h-4 mr-2"/></span>Add new</p>
         </Link>
       </div>
-      <div className="max-w-screen-lg mx-auto flex flex-col items-center justify-center mt-6">
-        <ToDoFeed user={session?.user} expires="" />
+      <div className="max-w-screen-lg mx-auto">
+        <Feed user={session?.user} expires={session.expires} />
       </div>
     </div>
   );
