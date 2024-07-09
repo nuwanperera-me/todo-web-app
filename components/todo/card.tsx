@@ -79,24 +79,24 @@ export default function Card({ data }: CardProps) {
               }}
               className="h-8 rounded-full text-white flex items-center justify-center"
             >
-              <TrashIcon className="h-5 w-5 dark:hover:text-red-500 hover:text-red-600 text-neutral-500 dark:text-neutral-400 transition-colors duration-300" />
+              <TrashIcon className="h-5 w-5 dark:hover:text-red-500 hover:text-red-600 text-zinc-500 dark:text-zinc-500 transition-colors duration-300" />
             </button>
           </div>
           <div className="text-xs pt-2 font-semibold text-zinc-900 ">
             {data.isImportant ? (
-              <span className=" py-1 px-2 rounded-sm text-neutral-50 bg-orange-400">
+              <span className=" py-1 px-2 rounded-sm text-zinc-50 bg-orange-400">
                 Important
               </span>
             ) : (
               <></>
             )}
           </div>
-          <p className="text-sm text-neutral-500 dark:text-neutral-400 pt-2">
+          <p className="text-sm text-zinc-500 dark:text-zinc-400 pt-2">
             {data.description}
           </p>
         </div>
         <div className="w-full flex items-center justify-between gap-2">
-          <p className="text-xs text-neutral-400">{new Date(data.date * 1).toLocaleDateString().replaceAll("/", " / ")}</p>
+          <p className="text-xs text-zinc-400">{new Date(data.date * 1).toLocaleDateString().replaceAll("/", " / ")}</p>
 
           <div
             className={cn([
@@ -104,7 +104,7 @@ export default function Card({ data }: CardProps) {
             ])}
           >
             <Link href={`/edit-todo/${data._id}`}>
-              <PencilIcon className="h-5 w-5 text-neutral-500 hover:text-neutral-950 dark:hover:text-neutral-50 transition-colors duration-300" />
+              <PencilIcon className="h-5 w-5 text-zinc-500 hover:text-zinc-950 dark:hover:text-neutral-50 transition-colors duration-300" />
             </Link>
             <button
               onClick={(e) => {
@@ -118,7 +118,7 @@ export default function Card({ data }: CardProps) {
 
                   isDone
                     ? "text-green-600"
-                    : "text-neutral-500 hover:text-green-500 hover:dark:text-green-400"
+                    : "text-zinc-500 hover:text-green-500 hover:dark:text-green-400"
                 )}
               />
             </button>

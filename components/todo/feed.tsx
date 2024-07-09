@@ -4,6 +4,7 @@ import { Session } from "next-auth";
 import { useEffect, useState } from "react";
 import Card from "./card";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export interface Todo {
   _id: string;
@@ -21,8 +22,7 @@ export default function Feed(session: Session) {
   useEffect(() => {
     const fetchTodos = async () => {
       //@ts-ignore
-      const res = await fetch(`/api/todos/user/${session?.user?.id.toString()}`
-      );
+      const res = await fetch(`/api/todos/user/${session?.user?.id.toString()}`);
       const data = await res.json();
 
       if (filter === "completed") {
@@ -63,31 +63,53 @@ export default function Feed(session: Session) {
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   return (
     <>
       <div className="flex gap-4 mb-6">
-        <button className={cn("rounded-md px-3 py-2 inline-flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 hover:opacity-90 active:opacity-90 transition-colors duration-200", filter === "all" ? "bg-zinc-950 text-zinc-100 dark:bg-zinc-50 dark:text-zinc-950": "")}
-        onClick={() => setFilter("all")}
+        <button
+          className={cn(
+            "rounded-md px-3 py-2 inline-flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 hover:opacity-90 active:opacity-90 transition-colors duration-200",
+            filter === "all"
+              ? "bg-zinc-950 text-zinc-100 dark:bg-zinc-50 dark:text-zinc-950"
+              : ""
+          )}
+          onClick={() => setFilter("all")}
         >
           <span className="text-xs font-semibold">All</span>
         </button>
-        <button className={cn("rounded-md px-3 py-2 inline-flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 hover:opacity-90 active:opacity-90 transition-colors duration-200", filter === "completed" ? "bg-zinc-950 text-zinc-100 dark:bg-zinc-50 dark:text-zinc-950": "")}
-        onClick={() => setFilter("completed")}
+        <button
+          className={cn(
+            "rounded-md px-3 py-2 inline-flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 hover:opacity-90 active:opacity-90 transition-colors duration-200",
+            filter === "completed"
+              ? "bg-zinc-950 text-zinc-100 dark:bg-zinc-50 dark:text-zinc-950"
+              : ""
+          )}
+          onClick={() => setFilter("completed")}
         >
           <span className="text-xs font-semibold">Completed</span>
         </button>
-        <button className={cn("rounded-md px-3 py-2 inline-flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 hover:opacity-90 active:opacity-90 transition-colors duration-200", filter === "important" ? "bg-zinc-950 text-zinc-100 dark:bg-zinc-50 dark:text-zinc-950": "")}
-        onClick={() => setFilter("important")}
+        <button
+          className={cn(
+            "rounded-md px-3 py-2 inline-flex items-center justify-center bg-zinc-100 dark:bg-zinc-800 hover:opacity-90 active:opacity-90 transition-colors duration-200",
+            filter === "important"
+              ? "bg-zinc-950 text-zinc-100 dark:bg-zinc-50 dark:text-zinc-950"
+              : ""
+          )}
+          onClick={() => setFilter("important")}
         >
           <span className="text-xs font-semibold">Important</span>
         </button>
-        
       </div>
       <div className="flex flex-col gap-2">
+        {todos.length === 0 && (
+          <div className="flex flex-col items-center justify-center">
+            <p className="text-zinc-500 dark:text-zinc-500">No todos found!</p>
+          </div>
+        )}
         {todos.map((todo: Todo) => (
-          <Card key={todo._id} data={todo}/>
+          <Card key={todo._id} data={todo} />
         ))}
       </div>
     </>
