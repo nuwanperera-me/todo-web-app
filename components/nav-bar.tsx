@@ -76,8 +76,8 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="fixed w-full h-16 flex flex-col items-center backdrop-blur-sm border-b shadow-2xl shadow-neutral-200 dark:shadow-neutral-800 ">
-      <div className="w-full h-16 max-w-screen-2xl px-8 flex items-center justify-between">
+    <nav className="fixed w-full h-16 flex flex-col items-center backdrop-blur-sm border-b shadow-2xl shadow-zinc-200 dark:shadow-zinc-900">
+      <div className="w-full h-16 max-w-screen-2xl px-4 flex items-center justify-between">
         <Link href="/" className="flex flex-col items-end">
           <p className="text-2xl inline-flex items-end font-semibold select-none">
             TODO
