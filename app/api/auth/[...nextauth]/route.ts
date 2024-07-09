@@ -4,6 +4,7 @@ import GoogleProvider from "next-auth/providers/google";
 import User from "@/models/user";
 import { connectToDatabase } from "@/lib/database";
 
+
 const handler = NextAuth({
   providers: [
     GoogleProvider({
@@ -11,6 +12,7 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
     }),
   ],
+  
   callbacks: {
     async session({ session }) {
       const sessionUser = await User.findOne({
@@ -45,6 +47,9 @@ const handler = NextAuth({
         return false;
       }
     },
+  },
+  session: {
+    maxAge: 30 * 24 * 60 * 60,
   },
 });
 
