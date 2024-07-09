@@ -1,3 +1,5 @@
+
+![banner](public/todo-banner.png)
 # ToDoX 💥
 
 Just simple todo app.
