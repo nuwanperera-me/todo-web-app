@@ -67,8 +67,8 @@ export default function NavBar() {
             y2="26"
             gradientUnits="userSpaceOnUse"
           >
-            <stop offset="0.695" stop-color="#09090B" />
-            <stop offset="0.88" stop-color="#27272A" />
+            <stop offset="0.695" stopColor="#09090B" />
+            <stop offset="0.88" stopColor="#27272A" />
           </linearGradient>
         </defs>
       </svg>
