@@ -58,7 +58,6 @@ export default function Card({ data }: CardProps) {
   };
 
   const date = new Date(data.date * 1).toLocaleDateString();
-  console.log(date);
 
   return isDeleted ? (
     <></>
