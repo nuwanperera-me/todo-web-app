@@ -64,9 +64,13 @@ export default function Card({ data }: CardProps) {
   ) : (
     <div
       key={data._id}
-      className="w-full flex flex-col max-w-screen-sm mx-auto p-4 justify-between  bg-neutral-100 dark:bg-neutral-800 rounded-lg shadow-md"
+      className={`w-full flex flex-col border border-border max-w-screen-sm mx-auto p-4 justify-between rounded-lg shadow-md ${
+        data.isImportant
+          ? "bg-gradient-to-r from-orange-100/75 dark:from-yellow-800/25 from-1% to-zinc-100 dark:to-zinc-900"
+          : "bg-neutral-100 dark:bg-neutral-900"
+      }`}
     >
-      <div className="flex flex-col h-full items-center gap-2 justify-between">
+      <div className="flex flex-col h-full items-center gap-2 justify-between z-10">
         <div className="h-full w-full">
           <div className=" w-full flex justify-between">
             <h3 className="text-lg font-semibold dark:text-neutral-100">
@@ -81,27 +85,27 @@ export default function Card({ data }: CardProps) {
               <TrashIcon className="h-5 w-5 dark:hover:text-red-500 hover:text-red-600 text-zinc-500 dark:text-zinc-500 transition-colors duration-300" />
             </button>
           </div>
-          <div className="text-xs pt-2 font-semibold text-zinc-900 ">
+          {/* <div className="text-xs mt-2 mb-2 mfont-semibold text-zinc-900 ">
             {data.isImportant ? (
-              <span className=" py-1 px-2 rounded-sm text-zinc-50 bg-orange-400">
+              <span className=" py-1 px-2 rounded-sm text-zinc-50 bg-orange-500">
                 Important
               </span>
             ) : (
               <></>
             )}
-          </div>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400 pt-2">
+          </div> */}
+          <p className="text-sm text-zinc-500 dark:text-zinc-400">
             {data.description}
           </p>
         </div>
         <div className="w-full flex items-center justify-between gap-2">
-          <p className="text-xs text-zinc-400">{new Date(data.date * 1).toLocaleDateString().replaceAll("/", " / ")}</p>
+          <p className="text-xs text-zinc-400">
+            {new Date(data.date * 1)
+              .toLocaleDateString()
+              .replaceAll("/", " / ")}
+          </p>
 
-          <div
-            className={cn([
-              "flex gap-2 items-center",
-            ])}
-          >
+          <div className={cn(["flex gap-2 items-center"])}>
             <Link href={`/edit-todo/${data._id}`}>
               <PencilIcon className="h-5 w-5 text-zinc-500 hover:text-zinc-950 dark:hover:text-neutral-50 transition-colors duration-300" />
             </Link>
