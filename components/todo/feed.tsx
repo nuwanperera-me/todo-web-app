@@ -1,10 +1,10 @@
 "use client";
 
 import { Session } from "next-auth";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import Card from "./card";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
+import { Loader2 } from "lucide-react";
 
 export interface Todo {
   _id: string;
@@ -18,26 +18,29 @@ export interface Todo {
 export default function Feed(session: Session) {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [filter, setFilter] = useState<string>("all");
+  const [isLoading, startTransition] = useTransition();
 
   useEffect(() => {
-    const fetchTodos = async () => {
-      //@ts-ignore
-      const res = await fetch(`/api/todos/user/${session?.user?.id.toString()}`);
-      const data = await res.json();
+    startTransition(() => {
+      const fetchTodos = async () => {
+        //@ts-ignore
+        const res = await fetch(`/api/todos/user/${session?.user?.id.toString()}`);
+        const data = await res.json();
 
-      if (filter === "completed") {
-        const completed = data.filter((todo: Todo) => todo.isDone);
-        setTodos(completed);
-        return;
-      }
-      if (filter === "important") {
-        const important = data.filter((todo: Todo) => todo.isImportant);
-        setTodos(important);
-        return;
-      }
-      setTodos(data);
-    };
-    fetchTodos();
+        if (filter === "completed") {
+          const completed = data.filter((todo: Todo) => todo.isDone);
+          setTodos(completed);
+          return;
+        }
+        if (filter === "important") {
+          const important = data.filter((todo: Todo) => todo.isImportant);
+          setTodos(important);
+          return;
+        }
+        setTodos(data);
+      };
+      fetchTodos();
+    });
   }, [session, filter]);
 
   const handleComplete = async (id: string) => {
@@ -103,6 +106,9 @@ export default function Feed(session: Session) {
         </button>
       </div>
       <div className="flex flex-col gap-2">
+        {isLoading && (
+          <Loader2 className="mx-auto text-zinc-100 animate-spin mt-4" />
+        )}
         {todos.length === 0 && (
           <div className="flex flex-col items-center justify-center">
             <p className="text-zinc-500 dark:text-zinc-500">No todos found!</p>
