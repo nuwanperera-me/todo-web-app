@@ -8,6 +8,7 @@ import Link from "next/link";
 // import ToDoFeed from "@/components/todo-feed";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import Feed from "@/components/todo/feed";
+import { Loader2 } from "lucide-react";
 
 export default function Home() {
   const { data: session } = useSession();
@@ -22,14 +23,13 @@ export default function Home() {
     setProvidersList();
   }, []);
 
-
-
   if (!session) {
     return (
       <div className="flex flex-col items-center justify-center my-auto">
         <div className="text-3xl md:text-4xl font-semibold">
           Sign In to Continue
         </div>
+        {!providers && <Loader2 className="mt-4 animate-spin text-zinc-100" />}
         {providers &&
           Object.values(providers).map((provider: any) => (
             <button

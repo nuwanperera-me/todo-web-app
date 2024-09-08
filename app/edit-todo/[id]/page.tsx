@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-import Form from "@/components/form";
+import Form from "@/app/components/form";
 
 export default function EditTodoPage({ params }: { params: { id: string } }) {
   const router = useRouter();
